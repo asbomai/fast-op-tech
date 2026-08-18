@@ -1,0 +1,1 @@
+Place FAST-owned SVG/logo assets here. Avoid stock photography unless a screen specifically requires it.
