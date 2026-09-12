@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 450" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a192f"/>
+      <stop offset="60%" stop-color="#0b2545"/>
+      <stop offset="100%" stop-color="#134074"/>
+    </linearGradient>
+
+    <!-- Metallic Silver Gradient -->
+    <linearGradient id="silver-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="25%" stop-color="#E2E8F0"/>
+      <stop offset="50%" stop-color="#94A3B8"/>
+      <stop offset="75%" stop-color="#CBD5E1"/>
+      <stop offset="100%" stop-color="#64748B"/>
+    </linearGradient>
+
+    <linearGradient id="silver-bevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+
+    <!-- Blue Shield Accent Gradient -->
+    <linearGradient id="blue-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A"/>
+      <stop offset="50%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#0369A1"/>
+    </linearGradient>
+
+    <!-- Cyan Glow Gradient -->
+    <linearGradient id="cyan-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0EA5E9"/>
+    </linearGradient>
+
+    <!-- Globe Gradient -->
+    <radialGradient id="globe-grad" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="70%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </radialGradient>
+
+    <!-- Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="soft-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Dark Tech Background -->
+  <rect width="1000" height="450" fill="url(#bg-grad)"/>
+
+  <!-- Network Perspective Grid Base -->
+  <g opacity="0.15" stroke="#38BDF8" stroke-width="1">
+    <ellipse cx="160" cy="370" rx="140" ry="40" fill="none"/>
+    <ellipse cx="160" cy="370" rx="100" ry="28" fill="none"/>
+    <ellipse cx="160" cy="370" rx="60" ry="17" fill="none"/>
+    <path d="M 20 370 L 300 370 M 160 330 L 160 410 M 61 342 L 259 398 M 61 398 L 259 342" />
+  </g>
+
+  <!-- LOGO EMBLEM (LEFT) -->
+  <g transform="translate(10, 0)" filter="url(#soft-shadow)">
+    
+    <!-- Outer Shield Glow Outline -->
+    <path d="M 160 65 
+             C 210 65, 270 75, 275 125 
+             C 275 225, 200 295, 160 325 
+             C 120 295, 45 225, 45 125 
+             C 50 75, 110 65, 160 65 Z" 
+          fill="none" 
+          stroke="url(#cyan-glow)" 
+          stroke-width="3" 
+          filter="url(#glow)"/>
+
+    <!-- Outer Silver Shield Frame -->
+    <path d="M 160 75 
+             C 200 75, 250 83, 255 125 
+             C 255 205, 195 265, 160 295 
+             C 125 265, 65 205, 65 125 
+             C 70 83, 120 75, 160 75 Z" 
+          fill="url(#silver-grad)" 
+          stroke="url(#silver-bevel)" 
+          stroke-width="2"/>
+
+    <!-- Inner Blue Shield Layer -->
+    <path d="M 160 95 
+             C 190 95, 235 102, 238 135 
+             C 238 200, 185 250, 160 275 
+             C 135 250, 82 200, 82 135 
+             C 85 102, 130 95, 160 95 Z" 
+          fill="url(#blue-grad)"/>
+
+    <!-- Stylized 'F' / Geometric Cut -->
+    <path d="M 105 120 L 215 120 L 215 148 L 140 148 L 140 178 L 200 178 L 180 235 L 140 235 L 140 260 L 105 220 Z" 
+          fill="url(#silver-grad)"/>
+
+    <!-- Inner Dark Accent Cutout for Depth -->
+    <path d="M 140 178 L 200 178 L 168 235 L 140 178 Z" fill="#0B192C" opacity="0.3"/>
+
+    <!-- Cyber Tech Grid overlay on Shield -->
+    <path d="M 90 140 L 230 140 M 100 170 L 220 170 M 115 200 L 205 200 M 130 230 L 190 230" 
+          stroke="#38BDF8" stroke-width="1" opacity="0.25" stroke-dasharray="4,4"/>
+
+    <!-- Interactive Globe (Bottom Center of Shield) -->
+    <g transform="translate(160, 310)">
+      <!-- Outer Ring & Glow -->
+      <circle cx="0" cy="0" r="32" fill="#0A192F" stroke="url(#cyan-glow)" stroke-width="2" filter="url(#glow)"/>
+      <circle cx="0" cy="0" r="28" fill="url(#globe-grad)"/>
+      
+      <!-- Globe Grid/Lines -->
+      <ellipse cx="0" cy="0" rx="28" ry="10" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.5"/>
+      <ellipse cx="0" cy="0" rx="14" ry="28" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.5"/>
+      <line x1="-28" y1="0" x2="28" y2="0" stroke="#FFFFFF" stroke-width="1.5" opacity="0.6"/>
+      <line x1="0" y1="-28" x2="0" y2="28" stroke="#FFFFFF" stroke-width="1.5" opacity="0.6"/>
+      
+      <!-- Stylized Continents Dot Matrix -->
+      <circle cx="-10" cy="-8" r="3" fill="#FFFFFF" opacity="0.8"/>
+      <circle cx="-5" cy="-12" r="2" fill="#FFFFFF" opacity="0.8"/>
+      <circle cx="8" cy="-6" r="4" fill="#FFFFFF" opacity="0.8"/>
+      <circle cx="12" cy="8" r="3" fill="#FFFFFF" opacity="0.8"/>
+      <circle cx="-12" cy="10" r="3.5" fill="#FFFFFF" opacity="0.8"/>
+    </g>
+
+  </g>
+
+  <!-- TYPOGRAPHY SECTION (RIGHT) -->
+  <g transform="translate(320, 0)">
+    
+    <!-- Main Brand Name: FAST -->
+    <text x="30" y="210" 
+          font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" 
+          font-weight="900" 
+          font-size="120" 
+          fill="url(#silver-grad)" 
+          letter-spacing="4"
+          filter="url(#soft-shadow)">
+      FAST
+    </text>
+
+    <!-- Primary Subtitle: CYBERSECURITY OPERATIONS -->
+    <text x="35" y="260" 
+          font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" 
+          font-weight="700" 
+          font-size="30" 
+          fill="#0EA5E9" 
+          letter-spacing="5">
+      CYBERSECURITY OPERATIONS
+    </text>
+
+    <!-- Secondary Subtitle: INTELLIGENCE . INSIGHT . OPTIMIZATION -->
+    <text x="36" y="298" 
+          font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" 
+          font-weight="600" 
+          font-size="16" 
+          fill="#94A3B8" 
+          letter-spacing="6.5"
+          opacity="0.9">
+      INTELLIGENCE  •  INSIGHT  •  OPTIMIZATION
+    </text>
+
+    <!-- Subtle Tech Accent Line under text -->
+    <line x1="35" y1="315" x2="600" y2="315" stroke="url(#cyan-glow)" stroke-width="2" opacity="0.4"/>
+    <rect x="35" y="314" width="40" height="4" fill="#38BDF8" filter="url(#glow)"/>
+  </g>
+
+</svg>

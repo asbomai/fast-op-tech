@@ -1,14 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap");
+/* ===== IMPORTS MUST COME FIRST ===== */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@400;500&display=swap");
 @import "./tokens.css";
 
+/* ===== TAILWIND DIRECTIVES ===== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== YOUR EXISTING STYLES BELOW ===== */
 * { box-sizing: border-box; }
 html, body, #root { min-height: 100%; margin: 0; }
+
 body {
   background: var(--primary-800);
   color: var(--gray-100);
   font-family: Inter, system-ui, sans-serif;
   font-size: 14px;
 }
+
 button, input { font: inherit; }
 button { cursor: pointer; }
 a { color: inherit; text-decoration: none; }
@@ -45,3 +54,106 @@ a { color: inherit; text-decoration: none; }
 .map-message { position:absolute; inset:0; display:grid; place-items:center; text-align:center; color:var(--gray-400); line-height:1.7; }
 .asset-marker { width:14px; height:14px; border-radius:50%; background:var(--primary-500); border:2px solid white; }
 .incident-marker { width:14px; height:14px; border-radius:50%; background:var(--danger); border:2px solid white; }
+
+/* ===== TAILWIND LAYER OVERRIDES ===== */
+@layer base {
+  /* Override body styles for website pages only */
+  .website-body {
+    @apply bg-white text-gray-900;
+  }
+  
+  .website-body h1, 
+  .website-body h2, 
+  .website-body h3, 
+  .website-body h4, 
+  .website-body h5, 
+  .website-body h6 {
+    @apply font-bold;
+  }
+}
+
+@layer components {
+  /* Website Components */
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors duration-200;
+  }
+  
+  .btn-dark {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors duration-200;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent;
+  }
+  
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-28;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-1;
+  }
+  
+  .hero-gradient {
+    background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #dbeafe 100%);
+  }
+}
+
+/* ===== CUSTOM ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-count-up {
+  animation: countUp 1s ease-out forwards;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-blue-700;
+}
