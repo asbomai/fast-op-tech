@@ -438,12 +438,13 @@ const Solutions = () => {
                   <Icon type="offline" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-slate-300" />
                   <div>
                     <p className="text-[11px] font-medium text-slate-200 sm:text-[12px]">
-                      Offline-Capable Field App
+                      Offline-First Field Architecture
                     </p>
                     <p className="mt-0.5 text-[9.5px] leading-[1.5] text-slate-400">
                       Field teams can log data, update incidents, and view
-                      maps without active cellular data. Synchronization
-                      occurs automatically once back in range.
+                      maps without active cellular data. Once connectivity
+                      returns, data automatically synchronizes with FAST OS
+                      and updates the central dashboard.
                     </p>
                   </div>
                 </div>
