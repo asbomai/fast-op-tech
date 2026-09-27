@@ -264,7 +264,7 @@ const HeritageVisual = () => (
   <div className="relative h-[220px] w-full overflow-hidden rounded-[5px] border border-white/[0.06] bg-[#060d16] sm:h-[260px]">
     <img
       src={COMPANY_IMAGES.heritage}
-      alt="FAST Sentinel Command center, established 2026, defense logistics sector"
+      alt="FAST command center, established 2026, defense logistics sector"
       className="h-full w-full object-cover"
     />
 
@@ -701,8 +701,9 @@ const Company = () => {
                     Aggregate all data streams into a single source of
                     truth.
                   </ActionItem>
-                  <ActionItem title="Predictive Alerting">
-                    AI-driven risk assessment and early warning systems.
+                  <ActionItem title="Real-Time Incident Alerts">
+                    Instant automatic alerts and escalation to the right
+                    teams the moment an incident is reported.
                   </ActionItem>
                   <ActionItem title="Secure Communication">
                     End-to-end encrypted protocols for sensitive intel.
