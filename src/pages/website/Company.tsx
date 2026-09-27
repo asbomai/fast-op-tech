@@ -701,9 +701,8 @@ const Company = () => {
                     Aggregate all data streams into a single source of
                     truth.
                   </ActionItem>
-                  <ActionItem title="Real-Time Incident Alerts">
-                    Instant automatic alerts and escalation to the right
-                    teams the moment an incident is reported.
+                  <ActionItem title="Predictive Alerting">
+                    AI-driven risk assessment and early warning systems.
                   </ActionItem>
                   <ActionItem title="Secure Communication">
                     End-to-end encrypted protocols for sensitive intel.
