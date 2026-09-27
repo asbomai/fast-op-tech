@@ -164,6 +164,55 @@ const IntelligenceIcon = ({ className = "" }: IconProps) => (
   </svg>
 );
 
+const SensorNodeIcon = ({ className = "" }: IconProps) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.7"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="8" y="8" width="8" height="8" rx="1.5" />
+    <path d="M12 3v3M12 18v3M3 12h3M18 12h3" />
+    <path d="m6 6 1.8 1.8M16.2 16.2 18 18M18 6l-1.8 1.8M7.8 16.2 6 18" />
+  </svg>
+);
+
+const SensorTowerIcon = ({ className = "" }: IconProps) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.7"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M12 3v18" />
+    <path d="M7 21h10" />
+    <path d="M9 3h6l-1.2 8H10.2L9 3Z" />
+    <path d="M5.5 9.5a9 9 0 0 1 0-3M18.5 9.5a9 9 0 0 0 0-3" />
+  </svg>
+);
+
+const AeroLinkIcon = ({ className = "" }: IconProps) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.7"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M12 2.5v6.5M12 15v6.5" />
+    <path d="M3 8.5 12 11l9-2.5" />
+    <path d="m8 20 4-2 4 2" />
+  </svg>
+);
+
 const EmergencyIcon = ({ className = "" }: IconProps) => (
   <svg
     className={className}
@@ -197,28 +246,34 @@ const ProductCard = ({
   icon,
   name,
   description,
-  accent = false,
+  status = "mvp",
 }: {
   icon: ReactNode;
   name: string;
   description: string;
-  accent?: boolean;
+  status?: "mvp" | "future";
 }) => (
-  <div className="flex h-[62px] flex-col items-center justify-center border border-white/[0.025] bg-[#071d33] transition duration-200 hover:bg-[#0a2340]">
-    <div className={accent ? "text-emerald-400" : "text-slate-400"}>
+  <div className="flex h-[78px] flex-col items-center justify-center gap-0.5 border border-white/[0.025] bg-[#071d33] px-2 transition duration-200 hover:bg-[#0a2340]">
+    <div className={status === "future" ? "text-amber-400" : "text-blue-300"}>
       {icon}
     </div>
 
-    <h3 className="mt-1 text-[11px] font-semibold tracking-wide text-slate-200">
+    <h3 className="mt-1 text-center text-[11px] font-semibold tracking-wide text-slate-200">
       {name}
     </h3>
 
+    <span className="text-center text-[9px] text-slate-500">
+      {description}
+    </span>
+
     <span
-      className={`mt-0.5 text-[9px] ${
-        accent ? "text-emerald-400" : "text-slate-500"
+      className={`mt-1 rounded-full px-2 py-[1px] text-[7px] font-semibold tracking-wide ${
+        status === "future"
+          ? "bg-amber-500/15 text-amber-300"
+          : "bg-blue-500/15 text-blue-300"
       }`}
     >
-      {description}
+      {status === "future" ? "FUTURE / R&D" : "MVP"}
     </span>
   </div>
 );
@@ -384,6 +439,16 @@ const Icon = ({
         <svg {...common}>
           <rect x="5" y="5" width="14" height="14" rx="2" />
           <path d="m9 12 2 2 4-5" />
+        </svg>
+      );
+
+    case "track":
+      return (
+        <svg {...common}>
+          <path d="M4 17V9l4-4h6l4 4v8" />
+          <circle cx="8" cy="17" r="1.8" />
+          <circle cx="16" cy="17" r="1.8" />
+          <path d="M4 13h16" />
         </svg>
       );
 
@@ -805,7 +870,7 @@ const Platform = () => {
 
 
         {/* =====================================================
-            COMMAND WITHOUT BOUNDARIES
+            THE FAST ECOSYSTEM
         ====================================================== */}
 
         <section
@@ -818,56 +883,97 @@ const Platform = () => {
             <div className="mb-5">
 
               <h2 className="text-[21px] font-bold tracking-[-0.02em] text-slate-200 sm:text-[22px]">
-                COMMAND WITHOUT BOUNDARIES
+                THE FAST ECOSYSTEM
               </h2>
 
               <p className="mt-1.5 text-[11px] leading-[1.5] text-slate-400 sm:text-[12px]">
-                Deep integration across hardware, software, and human intelligence
-                <br className="hidden sm:block" />
-                systems for total situational awareness.
+                FAST OS is live today. Around it, we're building a wider
+                ecosystem of edge computing, tracking and intelligent
+                sensing — deep integration across hardware, software, and
+                human intelligence for total situational awareness.
               </p>
+
+              <div className="mt-3 flex flex-wrap gap-3 text-[9px] font-medium text-slate-400">
+                <span className="flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-blue-400" />
+                  MVP — Available Today
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-amber-400" />
+                  Future Concept / R&D
+                </span>
+              </div>
 
             </div>
 
 
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
 
+              {/* ===== MVP — AVAILABLE TODAY ===== */}
+
               <ProductCard
                 icon={<CommandIcon className="h-3.5 w-3.5" />}
-                name="FAST COMMAND"
-                description="Command & Control Hub"
+                name="FAST OS"
+                description="Command, Control & Operational Platform"
+                status="mvp"
               />
 
               <ProductCard
                 icon={<MobileIcon className="h-3.5 w-3.5" />}
                 name="FAST MOBILE"
                 description="Field Operations App"
-              />
-
-              <ProductCard
-                icon={<EdgeIcon className="h-3.5 w-3.5" />}
-                name="FAST EDGE"
-                description="COMING SOON"
-                accent
-              />
-
-              <ProductCard
-                icon={<DeployIcon className="h-3.5 w-3.5" />}
-                name="FAST DEPLOY"
-                description="Deployment"
+                status="mvp"
               />
 
               <ProductCard
                 icon={<BeaconIcon className="h-3.5 w-3.5" />}
                 name="FAST BEACON"
-                description="Tracker"
+                description="Personnel & Asset Tracker"
+                status="mvp"
+              />
+
+              <ProductCard
+                icon={<DeployIcon className="h-3.5 w-3.5" />}
+                name="FAST DEPLOY"
+                description="Deployment & Onboarding"
+                status="mvp"
+              />
+
+              {/* ===== FUTURE CONCEPT / R&D ===== */}
+
+              <ProductCard
+                icon={<EdgeIcon className="h-3.5 w-3.5" />}
+                name="FAST EDGE"
+                description="Edge Computing"
+                status="future"
+              />
+
+              <ProductCard
+                icon={<SensorNodeIcon className="h-3.5 w-3.5" />}
+                name="FAST SMART SENSOR NODE"
+                description="Intelligent Sensing"
+                status="future"
+              />
+
+              <ProductCard
+                icon={<SensorTowerIcon className="h-3.5 w-3.5" />}
+                name="FAST SENSOR TOWER"
+                description="Persistent Sensing Infrastructure"
+                status="future"
+              />
+
+              <ProductCard
+                icon={<AeroLinkIcon className="h-3.5 w-3.5" />}
+                name="FAST AEROLINK"
+                description="Airborne Operational Infrastructure"
+                status="future"
               />
 
               <ProductCard
                 icon={<IntelligenceIcon className="h-3.5 w-3.5" />}
-                name="FAST INTELLIGENCE"
-                description="Powered AI"
-                accent
+                name="FAST INTELLIGENCE LAYER"
+                description="AI-Powered Decision Support"
+                status="future"
               />
 
             </div>
@@ -985,7 +1091,7 @@ const Platform = () => {
             </p>
 
             <a
-              href="/contact"
+              href="/company#contact-form"
               className="mt-6 inline-flex h-10 items-center rounded bg-blue-600 px-6 text-sm font-semibold transition hover:bg-blue-500"
             >
               Request a Demo
@@ -1120,6 +1226,14 @@ const Platform = () => {
               >
                 All units and incidents visible in real time on a
                 shared map.
+              </DarkCard>
+
+              <DarkCard
+                icon="track"
+                title="Personnel, Vehicle & Asset Tracking"
+              >
+                Monitor field personnel, vehicles, and equipment in
+                real time from one connected operational picture.
               </DarkCard>
 
               <DarkCard
@@ -1303,7 +1417,7 @@ const Platform = () => {
 
               <DarkCard
                 icon="signal"
-                title="Offline-First Architecture"
+                title="Offline-First Field Architecture"
               >
                 Purpose-built for low-bandwidth and intermittent
                 connectivity in remote environments.
@@ -1402,7 +1516,7 @@ const Platform = () => {
                 title="Data Sovereignty"
               >
                 Control over operational data is national security.
-                Sentinel command ensures absolute data ownership in a
+                FAST OS ensures absolute data ownership in a
                 rapidly evolving geopolitical landscape.
               </ImageCard>
 
@@ -1690,8 +1804,8 @@ const Platform = () => {
                 </h2>
 
                 <p className="mt-3 max-w-[500px] text-[9.5px] leading-[1.5] text-blue-100 sm:text-[10px]">
-                  Join 500+ agencies worldwide who rely on Sentinel
-                  Command for mission-critical safety and security.
+                  Join agencies worldwide who rely on FAST
+                  for mission-critical safety and security.
                 </p>
 
               </div>
@@ -1700,7 +1814,7 @@ const Platform = () => {
               <div className="shrink-0 text-center">
 
                 <a
-                  href="/contact"
+                  href="/company#contact-form"
                   className="
                     flex
                     h-10
