@@ -507,9 +507,11 @@ const Product = () => {
               </p>
 
               <div className="mt-5 flex max-w-[430px] flex-col gap-4">
-                <FeatureRow icon="offline" title="Offline First Architecture">
-                  Data queues automatically when connectivity is lost and
-                  syncs on recovery.
+                <FeatureRow icon="offline" title="Offline-First Field Architecture">
+                  Field data is captured and queued locally when
+                  connectivity is unavailable, then automatically
+                  synchronizes with FAST OS and updates the central
+                  dashboard once connection is restored.
                 </FeatureRow>
 
                 <FeatureRow icon="target-ui" title="Large-Target UI">
