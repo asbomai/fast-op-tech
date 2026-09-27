@@ -1804,7 +1804,7 @@ const Platform = () => {
                 </h2>
 
                 <p className="mt-3 max-w-[500px] text-[9.5px] leading-[1.5] text-blue-100 sm:text-[10px]">
-                  Join agencies worldwide who rely on FAST
+                  Join 500+ agencies worldwide who rely on FAST
                   for mission-critical safety and security.
                 </p>
 
