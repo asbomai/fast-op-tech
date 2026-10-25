@@ -6,18 +6,12 @@ type IconProps = {
   className?: string;
 };
 
-/* ============================================================
-   IMAGE SOURCES
-============================================================ */
-
+// Image paths (served from /public)
 const COMPANY_IMAGES = {
   heritage: "/images/company/heritage.jpg",
 };
 
-/* ============================================================
-   NAV ICONS (kept in sync with Platform.tsx / Product.tsx)
-============================================================ */
-
+// Header search icon. Duplicated in Platform, Product and Solutions pages.
 const SearchIcon = ({ className = "" }: IconProps) => (
   <svg
     className={className}
@@ -31,14 +25,12 @@ const SearchIcon = ({ className = "" }: IconProps) => (
   </svg>
 );
 
-/* ============================================================
-   SECTION ICONS
-============================================================ */
-
+// Icon set for this page, selected by the `type` prop
 const Icon = ({
   type,
   className = "",
 }: IconProps & { type: string }) => {
+  // SVG attributes shared by every icon
   const common = {
     className,
     viewBox: "0 0 24 24",
@@ -126,10 +118,7 @@ const Icon = ({
   }
 };
 
-/* ============================================================
-   REUSABLE PIECES
-============================================================ */
-
+// Card for a single core value (icon, title, description)
 const CoreValueCard = ({
   icon,
   iconBg,
@@ -160,6 +149,7 @@ const CoreValueCard = ({
   </div>
 );
 
+// Contact tile. Renders as a link when `href` is passed, otherwise as plain text.
 const ContactInfoCard = ({
   icon,
   iconColor,
@@ -194,6 +184,7 @@ const ContactInfoCard = ({
   );
 };
 
+// Controlled text input with a label
 const FormField = ({
   label,
   placeholder,
@@ -235,6 +226,7 @@ const FormField = ({
   </div>
 );
 
+// Checklist entry for the "See FAST in Action" side panel
 const ActionItem = ({
   title,
   children,
@@ -256,10 +248,7 @@ const ActionItem = ({
   </div>
 );
 
-/* ============================================================
-   HERITAGE VISUAL (stand-in for real photography)
-============================================================ */
-
+// Heritage image with an "Established" badge overlaid
 const HeritageVisual = () => (
   <div className="relative h-[220px] w-full overflow-hidden rounded-[5px] border border-white/[0.06] bg-[#060d16] sm:h-[260px]">
     <img
@@ -282,10 +271,6 @@ const HeritageVisual = () => (
   </div>
 );
 
-/* ============================================================
-   PAGE
-============================================================ */
-
 const Company = () => {
   const [form, setForm] = useState({
     organization: "",
@@ -297,12 +282,13 @@ const Company = () => {
     message: "",
   });
 
+  // Returns a change handler bound to a single form field
   const update = (field: keyof typeof form) => (value: string) =>
     setForm((prev) => ({ ...prev, [field]: value }));
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // Wire this up to your backend / email service.
+    // TODO: send the form to the backend / email service
     console.log("Company contact form submitted:", form);
   };
 
@@ -318,10 +304,7 @@ const Company = () => {
 
       <main className="min-h-screen overflow-hidden bg-[#061525] text-white">
 
-        {/* =====================================================
-            NAVIGATION
-        ====================================================== */}
-
+        {/* Header / navigation */}
         <header className="h-[58px] border-b border-white/[0.035] bg-[#07182a] px-5 sm:px-8 lg:px-[58px]">
           <div className="mx-auto flex h-full max-w-[1400px] items-center">
             <a
@@ -356,6 +339,7 @@ const Company = () => {
                 Solution
               </a>
 
+              {/* Active page */}
               <a
                 href="/company"
                 className="relative text-[13px] font-medium text-slate-200"
@@ -392,10 +376,7 @@ const Company = () => {
         </header>
 
 
-        {/* =====================================================
-            OUR HERITAGE
-        ====================================================== */}
-
+        {/* Heritage */}
         <section className="bg-[#0a2548] px-5 py-14 sm:px-8 sm:py-16 lg:px-[58px]">
           <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-8 sm:grid-cols-2 sm:gap-12">
             <HeritageVisual />
@@ -441,10 +422,7 @@ const Company = () => {
         </section>
 
 
-        {/* =====================================================
-            CORE VALUES
-        ====================================================== */}
-
+        {/* Core values */}
         <section className="bg-[#061525] px-5 py-14 sm:px-8 sm:py-16 lg:px-[58px]">
           <div className="mx-auto max-w-[1200px]">
             <div className="text-center">
@@ -494,10 +472,7 @@ const Company = () => {
         </section>
 
 
-        {/* =====================================================
-            GET IN TOUCH
-        ====================================================== */}
-
+        {/* Contact details */}
         <section className="bg-[#0a2548] px-5 py-14 sm:px-8 sm:py-16 lg:px-[58px]">
           <div className="mx-auto max-w-[1200px]">
             <div className="text-center">
@@ -543,10 +518,7 @@ const Company = () => {
         </section>
 
 
-        {/* =====================================================
-            CONTACT FORM
-        ====================================================== */}
-
+        {/* Contact form. #contact-form is the target for "Request Demo" links across the site. */}
         <section
           id="contact-form"
           className="bg-[#061525] px-5 py-14 sm:px-8 sm:py-16 lg:px-[58px]"
@@ -561,7 +533,7 @@ const Company = () => {
 
             <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_320px]">
 
-              {/* FORM */}
+              {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <FormField
@@ -636,6 +608,7 @@ const Company = () => {
                         <option>Enterprise Security</option>
                         <option>Other</option>
                       </select>
+                      {/* Custom arrow; appearance-none removes the native one */}
                       <Icon
                         type="chevron-down"
                         className="pointer-events-none absolute right-2.5 top-1/2 h-3 w-3 -translate-y-1/2 text-slate-500"
@@ -690,7 +663,7 @@ const Company = () => {
                 </button>
               </form>
 
-              {/* SIDE PANEL */}
+              {/* Side panel */}
               <div className="h-fit rounded-[5px] border border-white/[0.06] bg-[#0a1c30] p-5">
                 <h3 className="text-[12px] font-semibold text-slate-100 sm:text-[13px]">
                   See FAST in Action
@@ -737,10 +710,7 @@ const Company = () => {
         </section>
 
 
-        {/* =====================================================
-            FOOTER
-        ===================================================== */}
-
+        {/* Footer */}
         <footer className="bg-[#030c24] px-5 py-7 sm:px-8">
           <div className="mx-auto max-w-[1110px]">
             <div className="grid grid-cols-2 gap-7 sm:grid-cols-5">
