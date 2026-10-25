@@ -5,11 +5,7 @@ type IconProps = {
   className?: string;
 };
 
-/* ============================================================
-   IMAGE SOURCES
-   
-============================================================ */
-
+// Image paths (served from /public)
 const PRODUCT_IMAGES = {
   liveMap: "/images/product/live-map.jpg",
   incidentLifecycle: "/images/product/incident-lifecycle.jpg",
@@ -17,10 +13,7 @@ const PRODUCT_IMAGES = {
   fieldAppScreen: "/images/product/field-app-screen.jpg",
 };
 
-/* ============================================================
-   NAV / SHARED ICONS (kept in sync with Platform.tsx)
-============================================================ */
-
+// Header search icon. Duplicated in Platform, Solutions and Company pages.
 const SearchIcon = ({ className = "" }: IconProps) => (
   <svg
     className={className}
@@ -34,14 +27,12 @@ const SearchIcon = ({ className = "" }: IconProps) => (
   </svg>
 );
 
-/* ============================================================
-   SECTION ICONS
-============================================================ */
-
+// Icon set for this page, selected by the `type` prop
 const Icon = ({
   type,
   className = "",
 }: IconProps & { type: string }) => {
+  // SVG attributes shared by every icon
   const common = {
     className,
     viewBox: "0 0 24 24",
@@ -142,10 +133,7 @@ const Icon = ({
   }
 };
 
-/* ============================================================
-   REUSABLE PIECES
-============================================================ */
-
+// Metric tile (value + label)
 const StatBox = ({
   value,
   label,
@@ -163,6 +151,7 @@ const StatBox = ({
   </div>
 );
 
+// One audit-log entry with a timestamp
 const LogRow = ({
   label,
   timestamp,
@@ -183,6 +172,7 @@ const LogRow = ({
   </div>
 );
 
+// Feature row with an icon badge (used in the field app section)
 const FeatureRow = ({
   icon,
   title,
@@ -207,6 +197,7 @@ const FeatureRow = ({
   </div>
 );
 
+// Content card with an icon badge, title and description
 const InfoCard = ({
   icon,
   title,
@@ -229,10 +220,7 @@ const InfoCard = ({
   </div>
 );
 
-/* ============================================================
-   VISUAL MOCKUPS (stand-ins for product screenshots)
-============================================================ */
-
+// Live map screenshot
 const LiveMapVisual = () => (
   <div className="relative h-[190px] w-full overflow-hidden rounded-[5px] border border-white/[0.06] bg-[#0b1118] sm:h-[230px]">
     <img
@@ -243,6 +231,7 @@ const LiveMapVisual = () => (
   </div>
 );
 
+// Incident lifecycle screenshot. Named NetworkVisual for historical reasons.
 const NetworkVisual = () => (
   <div className="relative h-[190px] w-full overflow-hidden rounded-[5px] border border-white/[0.06] bg-[#0b1118] sm:h-[230px]">
     <img
@@ -253,6 +242,7 @@ const NetworkVisual = () => (
   </div>
 );
 
+// Static dispatch card built in markup (hardcoded demo data, no image)
 const DispatchCard = () => (
   <div className="h-[145px] w-full rounded-[5px] border border-white/[0.06] bg-[#0a1f36] p-4 sm:h-[165px] sm:p-5">
     <div className="flex items-center justify-between">
@@ -272,6 +262,7 @@ const DispatchCard = () => (
       ASSIGNED TO UNIT ALPHA 7
     </p>
 
+    {/* Progress bar, fixed at 2/3 */}
     <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-white/[0.06]">
       <div className="h-full w-2/3 rounded-full bg-cyan-400" />
     </div>
@@ -283,6 +274,7 @@ const DispatchCard = () => (
   </div>
 );
 
+// Phone frame around the field app screenshot
 const PhoneMockup = () => (
   <div className="mx-auto h-[280px] w-[145px] overflow-hidden rounded-[16px] border border-white/[0.08] bg-[#0a1f36] p-2 shadow-2xl sm:h-[320px] sm:w-[165px]">
     <img
@@ -292,10 +284,6 @@ const PhoneMockup = () => (
     />
   </div>
 );
-
-/* ============================================================
-   PAGE
-============================================================ */
 
 const Product = () => {
   return (
@@ -310,13 +298,10 @@ const Product = () => {
 
       <main className="min-h-screen overflow-hidden bg-[#061525] text-white">
 
-        {/* =====================================================
-            NAVIGATION
-        ====================================================== */}
-
+        {/* Header / navigation */}
         <header className="h-[58px] border-b border-white/[0.035] bg-[#07182a] px-5 sm:px-8 lg:px-[58px]">
           <div className="mx-auto flex h-full max-w-[1400px] items-center">
-                        <a
+            <a
               href="/"
               className="flex h-[30px] w-[72px] items-center"
             >
@@ -334,6 +319,7 @@ const Product = () => {
                 Platform
               </a>
 
+              {/* Active page */}
               <a
                 href="/product"
                 className="relative text-[13px] font-medium text-slate-200"
@@ -373,6 +359,7 @@ const Product = () => {
                 Login
               </a>
 
+              {/* NOTE: #demo has no matching element on this page, so this link does nothing. Point it to /company#contact-form. */}
               <a
                 href="#demo"
                 className="rounded border border-blue-500 bg-blue-600 px-3 py-1.5 text-[11px] font-semibold text-white transition hover:bg-blue-500 sm:px-4 sm:text-[12px]"
@@ -384,10 +371,7 @@ const Product = () => {
         </header>
 
 
-        {/* =====================================================
-            SECTION 1 — LIVE MAP
-        ====================================================== */}
-
+        {/* Live map */}
         <section className="bg-[#0a2548] px-5 py-12 sm:px-8 sm:py-16 lg:px-[58px]">
           <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-8 sm:grid-cols-2 sm:gap-12">
             <div>
@@ -414,10 +398,7 @@ const Product = () => {
         </section>
 
 
-        {/* =====================================================
-            SECTION 2 — INCIDENT LIFECYCLE
-        ====================================================== */}
-
+        {/* Incident lifecycle. Image-first on desktop, text-first on mobile. */}
         <section className="bg-[#061525] px-5 py-12 sm:px-8 sm:py-16 lg:px-[58px]">
           <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-8 sm:grid-cols-2 sm:gap-12">
             <div className="order-2 sm:order-1">
@@ -437,6 +418,7 @@ const Product = () => {
                 every step.
               </p>
 
+              {/* Sample audit log entries (static demo data) */}
               <div className="mt-5 max-w-[430px] border border-white/[0.05] bg-white/[0.02]">
                 <LogRow label="Incident Created: Report #912" timestamp="14:02:11 UTC" />
                 <LogRow label="Unit B-12 Assigned" timestamp="14:02:15 UTC" />
@@ -446,10 +428,7 @@ const Product = () => {
         </section>
 
 
-        {/* =====================================================
-            SECTION 3 — SMART DISPATCH
-        ====================================================== */}
-
+        {/* Smart dispatch */}
         <section className="bg-[#0a2548] px-5 py-12 sm:px-8 sm:py-16 lg:px-[58px]">
           <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-8 sm:grid-cols-2 sm:gap-12">
             <div>
@@ -485,10 +464,7 @@ const Product = () => {
         </section>
 
 
-        {/* =====================================================
-            SECTION 4 — FIELD APP
-        ====================================================== */}
-
+        {/* Field app */}
         <section className="bg-[#061525] px-5 py-12 sm:px-8 sm:py-16 lg:px-[58px]">
           <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-10 sm:grid-cols-2 sm:gap-12">
             <PhoneMockup />
@@ -524,10 +500,7 @@ const Product = () => {
         </section>
 
 
-        {/* =====================================================
-            SECTION 5 — MULTI-AGENCY / ACCOUNTABILITY
-        ====================================================== */}
-
+        {/* Multi-agency and accountability */}
         <section className="bg-[#0a2548] px-5 py-12 sm:px-8 sm:py-16 lg:px-[58px]">
           <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-2.5 sm:grid-cols-2">
             <InfoCard icon="network-hub" title="When agencies need to work as one.">
@@ -546,11 +519,7 @@ const Product = () => {
         </section>
 
 
-        
-        {/* =====================================================
-            FOOTER
-        ===================================================== */}
-
+        {/* Footer */}
         <footer className="bg-[#030c24] px-5 py-7 sm:px-8">
           <div className="mx-auto max-w-[1110px]">
             <div className="grid grid-cols-2 gap-7 sm:grid-cols-5">
