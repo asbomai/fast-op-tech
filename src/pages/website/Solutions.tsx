@@ -5,11 +5,7 @@ type IconProps = {
   className?: string;
 };
 
-/* ============================================================
-   IMAGE SOURCES
-   
-============================================================ */
-
+// Image paths (served from /public)
 const SOLUTION_IMAGES = {
   securityFirms: "/images/solutions/security-firms.jpg",
   emergencyAgencies: "/images/solutions/emergency-agencies.jpg",
@@ -17,10 +13,7 @@ const SOLUTION_IMAGES = {
   government: "/images/solutions/government.jpg",
 };
 
-/* ============================================================
-   NAV ICONS (kept in sync with other website pages)
-============================================================ */
-
+// Header search icon. Duplicated in Platform, Product and Company pages.
 const SearchIcon = ({ className = "" }: IconProps) => (
   <svg
     className={className}
@@ -34,14 +27,12 @@ const SearchIcon = ({ className = "" }: IconProps) => (
   </svg>
 );
 
-/* ============================================================
-   SECTION ICONS
-============================================================ */
-
+// Icon set for this page, selected by the `type` prop
 const Icon = ({
   type,
   className = "",
 }: IconProps & { type: string }) => {
+  // SVG attributes shared by every icon
   const common = {
     className,
     viewBox: "0 0 24 24",
@@ -123,16 +114,14 @@ const Icon = ({
   }
 };
 
-/* ============================================================
-   REUSABLE PIECES
-============================================================ */
-
+// Fixed-height image used in each sector section
 const SectionImage = ({ src, alt }: { src: string; alt: string }) => (
   <div className="h-[190px] w-full overflow-hidden rounded-[5px] border border-white/[0.06] bg-[#0b1118] sm:h-[230px]">
     <img src={src} alt={alt} className="h-full w-full object-cover" />
   </div>
 );
 
+// Small boxed feature with an icon, title and one-line description
 const StatFeatureBox = ({
   icon,
   title,
@@ -155,6 +144,7 @@ const StatFeatureBox = ({
   </div>
 );
 
+// Checkmark list item
 const BulletItem = ({ children }: { children: ReactNode }) => (
   <div className="flex items-center gap-2">
     <Icon type="check" className="h-2.5 w-2.5 shrink-0 text-emerald-400" />
@@ -164,6 +154,7 @@ const BulletItem = ({ children }: { children: ReactNode }) => (
   </div>
 );
 
+// Borderless feature row (icon + title + description)
 const InlineFeature = ({
   icon,
   title,
@@ -186,12 +177,14 @@ const InlineFeature = ({
   </div>
 );
 
+// Rounded tag label
 const Pill = ({ children }: { children: ReactNode }) => (
   <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 text-[9px] font-medium text-slate-300">
     {children}
   </span>
 );
 
+// Feature box prefixed with an index, e.g. "01. INTER-AGENCY"
 const NumberedFeatureBox = ({
   number,
   label,
@@ -211,10 +204,6 @@ const NumberedFeatureBox = ({
   </div>
 );
 
-/* ============================================================
-   PAGE
-============================================================ */
-
 const Solutions = () => {
   return (
     <>
@@ -228,10 +217,7 @@ const Solutions = () => {
 
       <main className="min-h-screen overflow-hidden bg-[#061525] text-white">
 
-        {/* =====================================================
-            NAVIGATION
-        ====================================================== */}
-
+        {/* Header / navigation */}
         <header className="h-[58px] border-b border-white/[0.035] bg-[#07182a] px-5 sm:px-8 lg:px-[58px]">
           <div className="mx-auto flex h-full max-w-[1400px] items-center">
             <a
@@ -260,6 +246,7 @@ const Solutions = () => {
                 Product
               </a>
 
+              {/* Active page */}
               <a
                 href="/solution"
                 className="relative text-[13px] font-medium text-slate-200"
@@ -292,6 +279,7 @@ const Solutions = () => {
                 Login
               </a>
 
+              {/* Scrolls to the CTA block (#demo) at the bottom of this page */}
               <a
                 href="#demo"
                 className="rounded border border-blue-500 bg-blue-600 px-3 py-1.5 text-[11px] font-semibold text-white transition hover:bg-blue-500 sm:px-4 sm:text-[12px]"
@@ -303,10 +291,7 @@ const Solutions = () => {
         </header>
 
 
-        {/* =====================================================
-            HERO
-        ====================================================== */}
-
+        {/* Hero */}
         <section className="bg-[#0a2548] px-5 py-14 text-center sm:px-8 sm:py-20 lg:px-[58px]">
           <div className="mx-auto max-w-[720px]">
             <h1 className="text-[26px] font-bold leading-[1.25] text-slate-100 sm:text-[34px]">
@@ -321,10 +306,7 @@ const Solutions = () => {
         </section>
 
 
-        {/* =====================================================
-            SECTION 1 — SECURITY FIRMS
-        ====================================================== */}
-
+        {/* Security firms */}
         <section className="bg-[#061525] px-5 py-12 sm:px-8 sm:py-16 lg:px-[58px]">
           <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-8 sm:grid-cols-2 sm:gap-12">
             <div>
@@ -365,10 +347,7 @@ const Solutions = () => {
         </section>
 
 
-        {/* =====================================================
-            SECTION 2 — EMERGENCY AGENCIES
-        ====================================================== */}
-
+        {/* Emergency agencies. Image-first on desktop, text-first on mobile. */}
         <section className="bg-[#0a2548] px-5 py-12 sm:px-8 sm:py-16 lg:px-[58px]">
           <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-8 sm:grid-cols-2 sm:gap-12">
             <div className="order-2 sm:order-1">
@@ -411,10 +390,7 @@ const Solutions = () => {
         </section>
 
 
-        {/* =====================================================
-            SECTION 3 — NGOs
-        ====================================================== */}
-
+        {/* NGOs */}
         <section className="bg-[#061525] px-5 py-12 sm:px-8 sm:py-16 lg:px-[58px]">
           <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-8 sm:grid-cols-2 sm:gap-12">
             <div>
@@ -429,6 +405,7 @@ const Solutions = () => {
                 built for exactly those conditions.
               </p>
 
+              {/* Offline-first callout. pr-16 keeps the text clear of the status label. */}
               <div className="relative mt-4 max-w-[430px] border border-white/[0.05] bg-white/[0.02] p-3">
                 <span className="absolute right-3 top-3 text-[8.5px] font-semibold tracking-wide text-emerald-400">
                   OFFLINE_ACTIVE
@@ -465,10 +442,7 @@ const Solutions = () => {
         </section>
 
 
-        {/* =====================================================
-            SECTION 4 — GOVERNMENT AGENCIES
-        ====================================================== */}
-
+        {/* Government agencies. Image-first on desktop, text-first on mobile. */}
         <section className="bg-[#0a2548] px-5 py-12 sm:px-8 sm:py-16 lg:px-[58px]">
           <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-8 sm:grid-cols-2 sm:gap-12">
             <div className="order-2 sm:order-1">
@@ -514,10 +488,7 @@ const Solutions = () => {
         </section>
 
 
-        {/* =====================================================
-            CTA
-        ====================================================== */}
-
+        {/* Call to action. id="demo" is the target of the header "Request Demo" link. */}
         <section className="bg-[#061525] px-5 py-10 sm:px-8 lg:px-[58px]">
           <div
             id="demo"
@@ -581,10 +552,7 @@ const Solutions = () => {
         </section>
 
 
-        {/* =====================================================
-            FOOTER
-        ===================================================== */}
-
+        {/* Footer */}
         <footer className="bg-[#030c24] px-5 py-7 sm:px-8">
           <div className="mx-auto max-w-[1110px]">
             <div className="grid grid-cols-2 gap-7 sm:grid-cols-5">
