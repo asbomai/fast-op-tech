@@ -6,6 +6,7 @@ type IconProps = {
   className?: string;
 };
 
+// Header search icon. Duplicated in Product, Solutions and Company pages.
 const SearchIcon = ({ className = "" }: IconProps) => (
   <svg
     className={className}
@@ -34,6 +35,7 @@ const ArrowIcon = ({ className = "" }: IconProps) => (
   </svg>
 );
 
+// Icons for the audience strip
 const ShieldIcon = ({ className = "" }: IconProps) => (
   <svg
     className={className}
@@ -76,6 +78,23 @@ const GlobeIcon = ({ className = "" }: IconProps) => (
   </svg>
 );
 
+const EmergencyIcon = ({ className = "" }: IconProps) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.7"
+    strokeLinecap="round"
+  >
+    <path d="M4 19h16" />
+    <path d="M6 17V8h12v9" />
+    <path d="M8 8V5h8v3" />
+    <path d="M9 11h6M9 14h6" />
+  </svg>
+);
+
+// Icons for the ecosystem product cards
 const CommandIcon = ({ className = "" }: IconProps) => (
   <svg
     className={className}
@@ -213,22 +232,7 @@ const AeroLinkIcon = ({ className = "" }: IconProps) => (
   </svg>
 );
 
-const EmergencyIcon = ({ className = "" }: IconProps) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.7"
-    strokeLinecap="round"
-  >
-    <path d="M4 19h16" />
-    <path d="M6 17V8h12v9" />
-    <path d="M8 8V5h8v3" />
-    <path d="M9 11h6M9 14h6" />
-  </svg>
-);
-
+// Item in the "Built for mission-critical organizations" strip
 const AudienceItem = ({
   icon,
   children,
@@ -242,6 +246,8 @@ const AudienceItem = ({
   </div>
 );
 
+// Ecosystem tile. `status` sets the icon colour and the badge:
+// "mvp" = available today, "future" = concept / R&D.
 const ProductCard = ({
   icon,
   name,
@@ -278,18 +284,14 @@ const ProductCard = ({
   </div>
 );
 
-/* ============================================================
-   INDUSTRY CARD
-   Holds an array of { image, title } entries and auto-crossfades
-   between them — swapping BOTH the photo and the label together,
-   one pair at a time, forever, while the card is on screen.
-============================================================ */
-
 type IndustryEntry = {
   image: string;
   title: string;
 };
 
+// Card that cycles through its entries on a timer, crossfading the image
+// and title together. All entries stay mounted and only opacity changes,
+// so images are loaded once and the fade stays smooth.
 const IndustryCard = ({
   entries,
   intervalMs = 3500,
@@ -300,6 +302,7 @@ const IndustryCard = ({
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
+    // Nothing to rotate with a single entry
     if (entries.length <= 1) return;
 
     const timer = setInterval(() => {
@@ -326,6 +329,7 @@ const IndustryCard = ({
             className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
           />
 
+          {/* Gradient so the title stays readable over the image */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#030d18]/95 via-[#030d18]/35 to-transparent" />
 
           <h3 className="absolute bottom-3 left-3 right-3 text-[13px] font-semibold leading-[1.25] text-white sm:text-[14px]">
@@ -334,6 +338,7 @@ const IndustryCard = ({
         </div>
       ))}
 
+      {/* Position dots */}
       {entries.length > 1 && (
         <div className="absolute right-3 top-3 z-10 flex gap-1">
           {entries.map((_, i) => (
@@ -350,11 +355,12 @@ const IndustryCard = ({
   );
 };
 
-
+// Icon set for this page, selected by the `type` prop
 const Icon = ({
   type,
   className = "",
 }: IconProps & { type: string }) => {
+  // SVG attributes shared by every icon
   const common = {
     className,
     viewBox: "0 0 24 24",
@@ -539,6 +545,7 @@ const Icon = ({
         </svg>
       );
 
+    // step1 - step4: icons for the incident-to-resolution timeline
     case "step1":
       return (
         <svg {...common}>
@@ -579,11 +586,8 @@ const Icon = ({
   }
 };
 
-
-/* ============================================================
-   REUSABLE CARD
-============================================================ */
-
+// Dark card with icon, title and description. Used for the problem,
+// solution and "Why FAST" grids.
 const DarkCard = ({
   icon,
   title,
@@ -625,11 +629,7 @@ const DarkCard = ({
   );
 };
 
-
-/* ============================================================
-   IMAGE CARD
-============================================================ */
-
+// Background-image card with the title and text overlaid ("Why now" section)
 const ImageCard = ({
   image,
   title,
@@ -642,12 +642,14 @@ const ImageCard = ({
   return (
     <div className="group relative h-[145px] overflow-hidden rounded-[4px] border border-white/[0.04] bg-[#071b2e] sm:h-[165px]">
 
+      {/* Decorative image, so alt is empty */}
       <img
         src={image}
         alt=""
         className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
       />
 
+      {/* Gradient so the text stays readable over the image */}
       <div
         className="
           absolute
@@ -687,17 +689,12 @@ const Platform = () => {
 
       <main className="min-h-screen overflow-hidden bg-[#061525] text-white">
 
-
-
-        {/* =====================================================
-            NAVIGATION
-        ====================================================== */}
-
+        {/* Header / navigation */}
         <header className="h-[58px] border-b border-white/[0.035] bg-[#07182a] px-5 sm:px-8 lg:px-[58px]">
 
           <div className="mx-auto flex h-full max-w-[1400px] items-center">
 
-            {/* LOGO */}
+            {/* Logo */}
             <a
               href="/"
               className="flex h-[30px] w-[72px] items-center"
@@ -708,9 +705,11 @@ const Platform = () => {
                 className="h-full w-auto object-contain"
               />
             </a>
-            {/* NAV */}
+
+            {/* Main links (hidden on mobile) */}
             <nav className="mx-auto hidden items-center gap-7 md:flex">
 
+              {/* Active page */}
               <a
                 href="/platform"
                 className="relative text-[13px] font-medium text-slate-200"
@@ -743,7 +742,7 @@ const Platform = () => {
 
             </nav>
 
-            {/* ACTIONS */}
+            {/* Search, login and demo actions */}
             <div className="ml-auto flex items-center gap-2 sm:gap-3">
 
               <button
@@ -761,6 +760,7 @@ const Platform = () => {
                 Login
               </a>
 
+              {/* Scrolls to the CTA block (#demo) near the bottom of this page */}
               <a
                 href="#demo"
                 className="rounded border border-blue-500 bg-blue-600 px-3 py-1.5 text-[11px] font-semibold text-white transition hover:bg-blue-500 sm:px-4 sm:text-[12px]"
@@ -775,10 +775,7 @@ const Platform = () => {
         </header>
 
 
-        {/* =====================================================
-            HERO
-        ====================================================== */}
-
+        {/* Hero */}
         <section className="bg-[#0a2548]">
 
           <div className="mx-auto flex min-h-[292px] max-w-[1400px] items-center justify-center px-5 py-14 text-center sm:px-8">
@@ -808,6 +805,7 @@ const Platform = () => {
                   <ArrowIcon className="h-3 w-3" />
                 </a>
 
+                {/* Scrolls to the ecosystem section (#platform) */}
                 <a
                   href="#platform"
                   className="flex h-[34px] items-center rounded bg-[#1c5bce] px-4 text-[12px] font-semibold text-white transition hover:bg-blue-500 sm:text-[13px]"
@@ -824,10 +822,7 @@ const Platform = () => {
         </section>
 
 
-        {/* =====================================================
-            AUDIENCE STRIP
-        ====================================================== */}
-
+        {/* Audience strip */}
         <section className="border-b border-white/[0.025] bg-[#061727] px-5 py-6 sm:px-8">
 
           <div className="mx-auto max-w-[1100px]">
@@ -869,10 +864,7 @@ const Platform = () => {
         </section>
 
 
-        {/* =====================================================
-            THE FAST ECOSYSTEM
-        ====================================================== */}
-
+        {/* FAST ecosystem. id="platform" is the target of the hero "See how it works" link. */}
         <section
           id="platform"
           className="bg-[#0a2949] px-5 py-7 sm:px-8 lg:py-8"
@@ -893,6 +885,7 @@ const Platform = () => {
                 human intelligence for total situational awareness.
               </p>
 
+              {/* Legend for the card badges */}
               <div className="mt-3 flex flex-wrap gap-3 text-[9px] font-medium text-slate-400">
                 <span className="flex items-center gap-1.5">
                   <span className="h-2 w-2 rounded-full bg-blue-400" />
@@ -909,7 +902,7 @@ const Platform = () => {
 
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
 
-              {/* ===== MVP — AVAILABLE TODAY ===== */}
+              {/* MVP products (available today) */}
 
               <ProductCard
                 icon={<CommandIcon className="h-3.5 w-3.5" />}
@@ -939,7 +932,7 @@ const Platform = () => {
                 status="mvp"
               />
 
-              {/* ===== FUTURE CONCEPT / R&D ===== */}
+              {/* Future concepts (R&D) */}
 
               <ProductCard
                 icon={<EdgeIcon className="h-3.5 w-3.5" />}
@@ -983,10 +976,7 @@ const Platform = () => {
         </section>
 
 
-        {/* =====================================================
-            WHO ITS FOR
-        ====================================================== */}
-
+        {/* Industries served. Each card rotates between two industries. */}
         <section
           id="solution"
           className="bg-[#061b2e] px-5 py-7 sm:px-8 lg:py-8"
@@ -1009,7 +999,6 @@ const Platform = () => {
 
             <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
 
-              {/* Defense & Security <-> Ports & Maritime */}
               <IndustryCard
                 entries={[
                   {
@@ -1023,7 +1012,6 @@ const Platform = () => {
                 ]}
               />
 
-              {/* Emergency Response Agencies <-> Critical Infrastructure */}
               <IndustryCard
                 entries={[
                   {
@@ -1037,7 +1025,6 @@ const Platform = () => {
                 ]}
               />
 
-              {/* NGOs & Humanitarian Organizations <-> Mining */}
               <IndustryCard
                 entries={[
                   {
@@ -1051,7 +1038,6 @@ const Platform = () => {
                 ]}
               />
 
-              {/* Aviation & Airports <-> Oil & Gas */}
               <IndustryCard
                 entries={[
                   {
@@ -1072,10 +1058,7 @@ const Platform = () => {
         </section>
 
 
-        {/* =====================================================
-            SIMPLE DEMO TARGET
-        ====================================================== */}
-
+        {/* Demo prompt. Links to the contact form on the Company page. */}
         <section
           id="demo-preview"
           className="bg-[#061525] px-5 py-16 text-center"
@@ -1100,22 +1083,15 @@ const Platform = () => {
           </div>
         </section>
 
-      
 
-
-
-
-        {/* ====================================================
-            IMAGE 1
-            THE PROBLEM
-        ===================================================== */}
-
+        {/* The problem */}
         <section className="bg-[#0b2340] px-5 py-7 sm:px-8 sm:py-9">
 
           <div className="mx-auto max-w-[1110px]">
 
             <div className="mb-5">
 
+              {/* NOTE: second <h1> on this page (the hero has one). Should be <h2>. */}
               <h1 className="text-[21px] font-semibold tracking-wide text-slate-100 sm:text-[22px]">
                 THE PROBLEM
               </h1>
@@ -1193,10 +1169,7 @@ const Platform = () => {
         </section>
 
 
-        {/* ====================================================
-            THE SOLUTION
-        ===================================================== */}
-
+        {/* The solution */}
         <section className="bg-[#071b2d] px-5 py-8 sm:px-8 sm:py-9">
 
           <div className="mx-auto max-w-[1110px]">
@@ -1282,10 +1255,7 @@ const Platform = () => {
         </section>
 
 
-        {/* ====================================================
-            QUANTIFIABLE OPERATIONAL EXCELLENCE
-        ===================================================== */}
-
+        {/* Operational metrics. Figures are marketing copy, not live data. */}
         <section className="bg-[#17304a] px-5 py-7 sm:px-8 sm:py-9">
 
           <div className="mx-auto max-w-[1110px]">
@@ -1301,7 +1271,7 @@ const Platform = () => {
 
             <div className="mt-5 grid grid-cols-3 gap-2.5">
 
-              {/* 75 */}
+              {/* Incident response */}
               <div>
 
                 <div className="relative h-[80px] overflow-hidden rounded-t bg-[#09233b] sm:h-[105px]">
@@ -1332,7 +1302,7 @@ const Platform = () => {
               </div>
 
 
-              {/* 90 */}
+              {/* Transparency */}
               <div>
 
                 <div className="relative h-[80px] overflow-hidden rounded-t bg-[#09233b] sm:h-[105px]">
@@ -1363,7 +1333,7 @@ const Platform = () => {
               </div>
 
 
-              {/* 30K */}
+              {/* Missions orchestrated */}
               <div>
 
                 <div className="relative h-[80px] overflow-hidden rounded-t bg-[#09233b] sm:h-[105px]">
@@ -1400,10 +1370,7 @@ const Platform = () => {
         </section>
 
 
-        {/* ====================================================
-            WHY FAST
-        ===================================================== */}
-
+        {/* Why FAST */}
         <section className="bg-[#071b2d] px-5 py-7 sm:px-8 sm:py-9">
 
           <div className="mx-auto max-w-[1110px]">
@@ -1470,10 +1437,7 @@ const Platform = () => {
         </section>
 
 
-        {/* ====================================================
-            WHY NOW
-        ===================================================== */}
-
+        {/* Why now */}
         <section className="bg-[#17304a] px-5 py-7 sm:px-8 sm:py-9">
 
           <div className="mx-auto max-w-[1110px]">
@@ -1527,10 +1491,7 @@ const Platform = () => {
         </section>
 
 
-        {/* ====================================================
-            FROM INCIDENT TO RESOLUTION
-        ===================================================== */}
-
+        {/* Incident-to-resolution workflow (4 steps) */}
         <section className="bg-[#071b2d] px-5 py-8 sm:px-8 sm:py-10">
 
           <div className="mx-auto max-w-[1110px]">
@@ -1550,11 +1511,11 @@ const Platform = () => {
 
             <div className="relative mt-8 grid grid-cols-2 gap-8 sm:grid-cols-4 sm:gap-0">
 
-              {/* connecting line */}
+              {/* Line connecting the step icons (desktop only) */}
               <div className="absolute left-[12%] right-[12%] top-[18px] hidden h-px bg-slate-600/40 sm:block" />
 
 
-              {/* STEP 1 */}
+              {/* Step 1 */}
               <div className="relative text-center">
 
                 <div className="relative mx-auto flex h-9 w-9 items-center justify-center rounded-full border border-slate-600/60 bg-[#263b52] text-blue-200">
@@ -1583,7 +1544,7 @@ const Platform = () => {
               </div>
 
 
-              {/* STEP 2 */}
+              {/* Step 2 */}
               <div className="relative text-center">
 
                 <div className="relative mx-auto flex h-9 w-9 items-center justify-center rounded-full border border-slate-600/60 bg-[#263b52] text-blue-200">
@@ -1611,7 +1572,7 @@ const Platform = () => {
               </div>
 
 
-              {/* STEP 3 */}
+              {/* Step 3 */}
               <div className="relative text-center">
 
                 <div className="relative mx-auto flex h-9 w-9 items-center justify-center rounded-full border border-slate-600/60 bg-[#263b52] text-blue-200">
@@ -1640,7 +1601,7 @@ const Platform = () => {
               </div>
 
 
-              {/* STEP 4 */}
+              {/* Step 4 */}
               <div className="relative text-center">
 
                 <div className="relative mx-auto flex h-9 w-9 items-center justify-center rounded-full border border-slate-600/60 bg-[#263b52] text-blue-200">
@@ -1675,10 +1636,7 @@ const Platform = () => {
         </section>
 
 
-        {/* ====================================================
-            ADVISORY BOARD
-        ===================================================== */}
-
+        {/* Advisory board and bottom CTA */}
         <section className="bg-[#1b3044] px-5 py-8 sm:px-8 sm:py-10">
 
           <div className="mx-auto max-w-[1110px]">
@@ -1697,9 +1655,8 @@ const Platform = () => {
             </p>
 
 
+            {/* Advisor placeholders until names are confirmed */}
             <div className="mt-6 grid grid-cols-1 gap-2.5 sm:grid-cols-3">
-
-              {/* ADVISOR 1 */}
 
               <div className="flex h-[112px] flex-col items-center justify-center border border-white/[0.025] bg-[#061727]">
 
@@ -1723,8 +1680,6 @@ const Platform = () => {
               </div>
 
 
-              {/* ADVISOR 2 */}
-
               <div className="flex h-[112px] flex-col items-center justify-center border border-white/[0.025] bg-[#061727]">
 
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#273b50] text-slate-400">
@@ -1746,8 +1701,6 @@ const Platform = () => {
 
               </div>
 
-
-              {/* ADVISOR 3 */}
 
               <div className="flex h-[112px] flex-col items-center justify-center border border-white/[0.025] bg-[#061727]">
 
@@ -1773,10 +1726,7 @@ const Platform = () => {
             </div>
 
 
-            {/* =================================================
-                CTA
-            ================================================== */}
-
+            {/* CTA. id="demo" is the target of the header and hero "Request Demo" links. */}
             <div
               id="demo"
               className="
@@ -1848,18 +1798,14 @@ const Platform = () => {
         </section>
 
 
-        {/* ====================================================
-            FOOTER
-        ===================================================== */}
-
+        {/* Footer */}
         <footer className="bg-[#030c24] px-5 py-7 sm:px-8">
 
           <div className="mx-auto max-w-[1110px]">
 
             <div className="grid grid-cols-2 gap-7 sm:grid-cols-5">
 
-              {/* BRAND */}
-
+              {/* Brand */}
               <div className="col-span-2 sm:col-span-1">
 
                 <a
@@ -1875,8 +1821,6 @@ const Platform = () => {
 
               </div>
 
-
-              {/* PLATFORM */}
 
               <div>
 
@@ -1894,8 +1838,6 @@ const Platform = () => {
               </div>
 
 
-              {/* PRODUCT */}
-
               <div>
 
                 <h3 className="text-[10px] font-medium text-slate-200">
@@ -1912,8 +1854,6 @@ const Platform = () => {
               </div>
 
 
-              {/* SOLUTION */}
-
               <div>
 
                 <h3 className="text-[10px] font-medium text-slate-200">
@@ -1929,8 +1869,6 @@ const Platform = () => {
 
               </div>
 
-
-              {/* COMPANY */}
 
               <div>
 
@@ -1950,8 +1888,7 @@ const Platform = () => {
             </div>
 
 
-            {/* COPYRIGHT */}
-
+            {/* Legal */}
             <div className="mt-7 flex flex-col justify-between gap-3 border-t border-white/[0.05] pt-5 sm:flex-row">
 
               <div>
@@ -1986,8 +1923,6 @@ const Platform = () => {
           </div>
 
         </footer>
-
-      
 
       </main>
     </>
